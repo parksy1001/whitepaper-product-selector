@@ -651,6 +651,8 @@ def parse_recorder_file(filepath: str, default_series: str) -> list:
         supported_cam = raw.get('supportedCam', 'DirectIP')
         max_bandwidth = raw.get('maxBandwidth', '-')
         rec_bandwidth = raw.get('recBandwidth', '-')
+        if default_series in ('IR-SVR', 'IR-WS') and max_bandwidth == '-' and rec_bandwidth != '-':
+            max_bandwidth = clean_bandwidth(rec_bandwidth)
         rec_res_raw = raw.get('recRes', '-')
         video_out = raw.get('videoOut', '-')
         total_capacity_raw = raw.get('totalCapacity', '-')
