@@ -13,7 +13,7 @@ IDIS Product Selector — Builder (v2)
   manual_p259_gdpr.PNG
   manual_p268_acut.PNG
   manual_p269_filter.PNG
-# test1
+
 실행:
   python build_idis_selector_v2.py
 
