@@ -98,23 +98,88 @@ CAMERA_ROW_MAP = {
 }
 
 RECORDER_ROW_MAP = {
-    'Model Name':           '__model__',
-    'Status':               'status',
-    'Title':                'title',
-    'IP Channels':          '__channels__',
-    'Max. IP Channels':     '__channels__',
-    'Max Channels':         '__channels__',
-    'Max Bandwidth':        'maxBandwidth',
-    'Recording Bandwidth':  'recBandwidth',
-    'Max Recording Res.':   'recRes',
-    'HDD':                  'hdd',
-    'Max Total Capacity':   'totalCapacity',
-    'Supported Camera':     'supportedCam',
-    'Video Output':         'videoOut',
-    'Dewarping':            '__dewarping__',
-    'RAID':                 '__raid__',
-    'ONVIF':                '__onvif__',
-    '4K':                   '__4k__',
+    # ── Identity ──────────────────────────
+    'Model Name':               '__model__',
+    'Status':                   'status',
+    'Release Date':             'releaseDate',
+    'Title':                    'title',
+
+    # ── Video / Channel ───────────────────
+    'Video Inputs':             '__channels__',
+    'IP Channels':              '__channels__',
+    'Max. IP Channels':         '__channels__',
+    'Max IP Channels':          '__channels__',
+    'Max Channels':             '__channels__',
+    'Channels':                 '__channels__',
+
+    'Max. Incoming Throughput': 'maxBandwidth',
+    'Max Incoming Throughput':  'maxBandwidth',
+    'Max Bandwidth':            'maxBandwidth',
+    'Max. Bandwidth':           'maxBandwidth',
+    'Incoming Bandwidth':       'maxBandwidth',
+
+    'Live + Recording + Remote':'liveRecRemote',
+
+    'Supported Camera':         'supportedCam',
+    'Supported Cameras':        'supportedCam',
+
+    'Video Outputs':            'videoOut',
+    'Video Output':             'videoOut',
+    'Video Out':                'videoOut',
+
+    'Display Layout':           'displayLayout',
+    'Display Resolution':       'displayResolution',
+    'Display Speed':            'displaySpeed',
+    'Max. Display Throughput':  'displayThroughput',
+    'Max Display Throughput':   'displayThroughput',
+    'Digital Zoom':             'digitalZoom',
+
+    'NVR Side Dewarping':       '__dewarping__',
+    'Dewarping':                '__dewarping__',
+    'Fisheye Dewarping':        '__dewarping__',
+
+    # ── Recording ─────────────────────────
+    'Max. Throughput':          'recBandwidth',
+    'Max Throughput':           'recBandwidth',
+    'Recording Bandwidth':      'recBandwidth',
+    'Max Recording Bandwidth':  'recBandwidth',
+
+    'Recording Resolution':     'recRes',
+    'Max Recording Res.':       'recRes',
+    'Max. Recording Res.':      'recRes',
+    'Max Recording Resolution': 'recRes',
+
+    'Recording Bitrate':        'recordingBitrate',
+    'Video Compression':        'compression',
+    'Recording Mode':           'recordingMode',
+    'Trigger Event':            'triggerEvent',
+    'Event Action':             'eventAction',
+
+    # ── Playback ──────────────────────────
+    'Performance':              'playbackPerformance',
+    'Search Mode':              'searchMode',
+
+    # ── Storage ───────────────────────────
+    'HDD':                      'hdd',
+    'Total Capacity':           'totalCapacity',
+    'Max Total Capacity':       'totalCapacity',
+    'Max. Total Capacity':      'totalCapacity',
+
+    # ── Interface / General ───────────────
+    'Two-way Audio':            'twoWayAudio',
+    'Audio In / Out':           'audioInOut',
+    'Audio In/Out':             'audioInOut',
+    'Alarm In / Out':           'alarmInOut',
+    'Alarm In/Out':             'alarmInOut',
+    'Approval':                 'approval',
+    'Key Feature':              'keyFeature',
+
+    # ── Optional explicit flags ───────────
+    'RAID':                     '__raid__',
+    'ONVIF':                    '__onvif__',
+    '4K':                       '__4k__',
+    '4K UHD':                   '__4k__',
+    '4K Support':               '__4k__',
 }
 
 STATUS_MAP = {
@@ -246,6 +311,95 @@ def detect_analytics(video_analytics: str, key_features: str) -> str:
         return 'edgeai'
     return 'none'
 
+def detect_analytics_features(video_analytics: str, key_features: str = '') -> list:
+    """
+    Extract individual VA features from Video Analytics / Key Feature text.
+    Returns display labels used by VA Selector.
+    """
+    text = f"{video_analytics or ''} {key_features or ''}".lower()
+
+    # Normalize common separators / typo variations
+    text = text.replace('-', ' ')
+    text = text.replace('_', ' ')
+    text = re.sub(r'\s+', ' ', text)
+
+    feature_patterns = [
+        {
+            'label': 'A-Cut',
+            'patterns': [
+                r'\ba\s*cut\b',
+                r'\bacut\b',
+            ],
+        },
+        {
+            'label': 'Object Detection',
+            'patterns': [
+                r'\bobject detection\b',
+            ],
+        },
+        {
+            'label': 'Intrusion',
+            'patterns': [
+                r'\bintrusion\b',
+            ],
+        },
+        {
+            'label': 'Loitering',
+            'patterns': [
+                r'\bloitering\b',
+                r'\bloitering detection\b',
+            ],
+        },
+        {
+            'label': 'Line Crossing',
+            'patterns': [
+                r'\bline crossing\b',
+                r'\bline crossing detection\b',
+            ],
+        },
+        {
+            'label': 'Face Detection',
+            'patterns': [
+                r'\bface detection\b',
+            ],
+        },
+        {
+            'label': 'Crowd Detection',
+            'patterns': [
+                r'\bcrowd detection\b',
+            ],
+        },
+        {
+            'label': 'Abandoned Object Detection',
+            'patterns': [
+                r'\babandoned object detection\b',
+                r'\babandoned detection\b',
+                r'\babandoned\b',
+            ],
+        },
+        {
+            'label': 'Removed Object Detection',
+            'patterns': [
+                r'\bremoved object detection\b',
+                r'\bremoved detection\b',
+                r'\bremoved\b',
+            ],
+        },
+        {
+            'label': 'Fall Detection',
+            'patterns': [
+                r'\bfall detection\b',
+            ],
+        },
+    ]
+
+    features = []
+
+    for feature in feature_patterns:
+        if any(re.search(pattern, text) for pattern in feature['patterns']):
+            features.append(feature['label'])
+
+    return features
 
 def detect_camera_booleans(cam: dict) -> dict:
     va       = str(cam.get('videoAnalytics', '')).lower()
@@ -291,6 +445,70 @@ def bool_cell(val) -> bool:
     s = str(val or '').lower().strip()
     return s in ('yes', 'true', '1', 'o', '●', '■', 'supported', 'support')
 
+def clean_channel_text(value: str) -> str:
+    """
+    '16 IP Channels' -> '16'
+    """
+    m = re.search(r'(\d+)', str(value or ''))
+    return m.group(1) if m else '-'
+
+
+def clean_rec_resolution(value: str) -> str:
+    """
+    'Up to 12MP (Depending on IP Camera)' -> 'Up to 12MP'
+    """
+    s = cell_str(value)
+    if s == '-':
+        return '-'
+    s = re.sub(r'\s*\([^)]*\)\s*', '', s).strip()
+    return s if s else '-'
+
+
+def clean_total_capacity(value: str) -> str:
+    """
+    '144TB=10TB x 8(Internal) + ...' -> '144TB'
+    """
+    s = cell_str(value)
+    if s == '-':
+        return '-'
+
+    if '=' in s:
+        return s.split('=', 1)[0].strip()
+
+    m = re.search(r'(\d+(?:\.\d+)?\s*(?:TB|GB))', s, re.I)
+    if m:
+        return m.group(1).replace(' ', '')
+
+    return s
+
+
+def text_has_raid(*values) -> bool:
+    text = ' '.join(str(v or '') for v in values).lower()
+    return 'raid' in text
+
+def clean_bandwidth(value: str) -> str:
+    """
+    '180Mbps, 480ips@UHD' -> '180Mbps'
+    '320Mbps' -> '320Mbps'
+    """
+    s = cell_str(value)
+    if s == '-':
+        return '-'
+
+    m = re.search(r'(\d+(?:\.\d+)?\s*Mbps)', s, re.I)
+    if m:
+        return m.group(1).replace(' ', '')
+
+    return s.split(',', 1)[0].strip()
+
+def text_has_4k(*values) -> bool:
+    text = ' '.join(str(v or '') for v in values).lower()
+    return (
+        '4k' in text
+        or 'uhd' in text
+        or '3840' in text
+        or '2160' in text
+    )
 
 def parse_transposed_xlsx(ws, row_map: dict) -> list:
     """
@@ -369,8 +587,14 @@ def parse_camera_file(filepath: str, default_category: str) -> list:
         cam['dayNight']         = raw.get('dayNight', '-')
         cam['compression']      = raw.get('compression', '-')
         cam['maxFrameRate']     = raw.get('maxFrameRate', '-')
-        cam['videoAnalytics']   = raw.get('videoAnalytics', '-')
+        #cam['videoAnalytics']   = raw.get('videoAnalytics', '-')
         cam['analyticsTier']    = detect_analytics(raw.get('videoAnalytics',''), raw.get('keyFeature',''))
+        cam['videoAnalytics'] = raw.get('videoAnalytics', '-')
+        cam['analyticsFeatures'] = detect_analytics_features(
+            raw.get('videoAnalytics', ''),  # Video Analytics
+            raw.get('keyFeature', '')       # Key Features
+        )
+        cam['hasAnalytics'] = len(cam['analyticsFeatures']) > 0    
         cam['twoWayAudio']      = raw.get('twoWayAudio', '-')
         cam['audioInOut']       = raw.get('audioInOut', '-')
         cam['alarmInOut']       = raw.get('alarmInOut', '-')
@@ -412,34 +636,61 @@ def parse_recorder_file(filepath: str, default_series: str) -> list:
         if not model or model == '-':
             continue
 
-        # Parse channel count
         ch_raw = raw.get('__channels__', '0')
         m = re.search(r'(\d+)', str(ch_raw))
         ch_num = int(m.group(1)) if m else 0
+
+        # Fallback: DR-8516 -> 16, DR-8564D -> 64, DR-2504P -> 4
+        if ch_num == 0:
+            m_model = re.search(r'DR-\d{2}(\d{2})', model.upper())
+            if m_model:
+                ch_num = int(m_model.group(1))
+
+        title = raw.get('title', model)
+        hdd = raw.get('hdd', '-')
+        supported_cam = raw.get('supportedCam', 'DirectIP')
+        max_bandwidth = raw.get('maxBandwidth', '-')
+        rec_bandwidth = raw.get('recBandwidth', '-')
+        rec_res_raw = raw.get('recRes', '-')
+        video_out = raw.get('videoOut', '-')
+        total_capacity_raw = raw.get('totalCapacity', '-')
 
         rec = {}
         rec['model']         = model
         rec['series']        = default_series
         rec['status']        = STATUS_MAP.get(raw.get('status', '출시완료'), '출시완료')
-        rec['title']         = raw.get('title', model)
+        rec['title']         = title
         rec['ch_num']        = ch_num
-        rec['channels']      = f'{ch_num} IP Channels' if ch_num else raw.get('__channels__', '-')
-        rec['maxBandwidth']  = raw.get('maxBandwidth', '-')
-        rec['recBandwidth']  = raw.get('recBandwidth', '-')
-        rec['recRes']        = raw.get('recRes', '-')
-        rec['hdd']           = raw.get('hdd', '-')
-        rec['totalCapacity'] = raw.get('totalCapacity', '-')
-        rec['supportedCam']  = raw.get('supportedCam', 'DirectIP')
-        rec['videoOut']      = raw.get('videoOut', '-')
-        rec['dewarping']     = bool_cell(raw.get('__dewarping__', ''))
-        rec['hasRAID']       = bool_cell(raw.get('__raid__', ''))
-        rec['hasONVIF']      = bool_cell(raw.get('__onvif__', '')) or default_series != 'DR1'
-        rec['is4K']          = bool_cell(raw.get('__4k__', ''))
+        rec['channels']      = str(ch_num) if ch_num else clean_channel_text(ch_raw)
+        rec['maxBandwidth']  = max_bandwidth
+        rec['recBandwidth']  = clean_bandwidth(rec_bandwidth)
+        rec['recRes']        = clean_rec_resolution(rec_res_raw)
+        rec['hdd']           = hdd
+        rec['totalCapacity'] = clean_total_capacity(total_capacity_raw)
+        rec['supportedCam']  = supported_cam
+        rec['videoOut']      = video_out
+
+        rec['dewarping'] = bool_cell(raw.get('__dewarping__', ''))
+
+        rec['hasRAID'] = (
+            bool_cell(raw.get('__raid__', ''))
+            or text_has_raid(hdd)
+        )
+
+        rec['hasONVIF'] = (
+            bool_cell(raw.get('__onvif__', ''))
+            or 'onvif' in str(supported_cam or '').lower()
+            or default_series != 'DR1'
+        )
+
+        rec['is4K'] = (
+            bool_cell(raw.get('__4k__', ''))
+            or text_has_4k(title, rec_res_raw, rec_bandwidth, video_out)
+        )
 
         recorders.append(rec)
 
     return recorders
-
 
 # ── MAIN ──────────────────────────────────────────────────────────────────────
 

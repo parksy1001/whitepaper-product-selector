@@ -322,7 +322,7 @@ body{{background:var(--bg);color:var(--text);font:14px/1.5 "Segoe UI",system-ui,
 .va-panel-icon{{font-size:14px}}
 .va-panel-title{{font-size:12px;font-weight:700;color:var(--text);flex:1}}
 .va-panel-cnt{{font-size:10px;font-weight:700;color:var(--accent);background:var(--accent-bg);padding:2px 7px;border-radius:10px}}
-.va-panel-body{{padding:7px;display:flex;flex-direction:column;gap:4px;max-height:300px;overflow-y:auto}}
+.va-panel-body{{padding:7px;display:flex;flex-direction:column;gap:4px;max-height:400px;overflow-y:auto}}
 .va-cam-row,.va-nvr-row{{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:7px 9px}}
 .va-cam-model,.va-nvr-model{{font-size:11px;font-weight:700;color:var(--text);margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
 .va-cam-title{{font-size:10px;color:var(--text2);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
@@ -459,6 +459,19 @@ body{{background:var(--bg);color:var(--text);font:14px/1.5 "Segoe UI",system-ui,
       <span class="chip" onclick="togSet(aAn,'lpr',this)">LPR</span>
       <span class="chip" onclick="togSet(aAn,'active',this)">ActiveDet</span>
     </div>
+    <div class="sec-lbl">VA Features</div>
+    <div class="ck-row">
+      <label class="ck-item"><input type="checkbox" data-anf="A-Cut"><span class="ck-box"></span><span class="ck-lbl">A-Cut</span></label>
+      <label class="ck-item"><input type="checkbox" data-anf="Object Detection"><span class="ck-box"></span><span class="ck-lbl">Object Detection</span></label>
+      <label class="ck-item"><input type="checkbox" data-anf="Intrusion"><span class="ck-box"></span><span class="ck-lbl">Intrusion</span></label>
+      <label class="ck-item"><input type="checkbox" data-anf="Loitering"><span class="ck-box"></span><span class="ck-lbl">Loitering</span></label>
+      <label class="ck-item"><input type="checkbox" data-anf="Line Crossing"><span class="ck-box"></span><span class="ck-lbl">Line Crossing</span></label>
+      <label class="ck-item"><input type="checkbox" data-anf="Face Detection"><span class="ck-box"></span><span class="ck-lbl">Face Detection</span></label>
+      <label class="ck-item"><input type="checkbox" data-anf="Crowd Detection"><span class="ck-box"></span><span class="ck-lbl">Crowd Detection</span></label>
+      <label class="ck-item"><input type="checkbox" data-anf="Abandoned Object Detection"><span class="ck-box"></span><span class="ck-lbl">Abandoned Object</span></label>
+      <label class="ck-item"><input type="checkbox" data-anf="Removed Object Detection"><span class="ck-box"></span><span class="ck-lbl">Removed Object</span></label>
+      <label class="ck-item"><input type="checkbox" data-anf="Fall Detection"><span class="ck-box"></span><span class="ck-lbl">Fall Detection</span></label>
+    </div>
     <div class="sec-lbl">Features</div>
     <div class="ck-row">
       <label class="ck-item"><input type="checkbox" data-feat="hasIR"><span class="ck-box"></span><span class="ck-lbl">IR Night Vision</span></label>
@@ -578,34 +591,36 @@ body{{background:var(--bg);color:var(--text);font:14px/1.5 "Segoe UI",system-ui,
         <span class="vfc-badge">AI</span>
         <div class="vfc-icon">🎯</div>
         <div class="vfc-name">EdgeAI</div>
-        <div class="vfc-tier">Obj Det · Loitering · Intrusion</div>
+        <div class="vfc-tier">IDLA</div>
       </div>
       <div class="va-feat-card" data-vaf="edgeai_plus">
         <span class="vfc-badge plus">AI+</span>
         <div class="vfc-icon">✨</div>
         <div class="vfc-name">EdgeAI Plus</div>
-        <div class="vfc-tier">Attributes · A-Cut · Crowd</div>
-      </div>
-      <div class="va-feat-card" data-vaf="lpr">
-        <span class="vfc-badge lpr-b">LPR</span>
-        <div class="vfc-icon">🚗</div>
-        <div class="vfc-name">LPR</div>
-        <div class="vfc-tier">License Plate Recognition</div>
-      </div>
-      <div class="va-feat-card" data-vaf="active">
-        <span class="vfc-badge lpr-b">ACT</span>
-        <div class="vfc-icon">🚨</div>
-        <div class="vfc-name">Active Deterrence</div>
-        <div class="vfc-tier">Warm Light · Warning</div>
+        <div class="vfc-tier">A-cut(Attributes) · IDLA PRO</div>
       </div>
     </div>
+    <div class="va-sec-lbl">Camera Built-in VA Features</div>
+    <div class="ck-row">
+      <label class="ck-item"><input type="checkbox" data-vsel="A-Cut"><span class="ck-box"></span><span class="ck-lbl">A-Cut</span></label>
+      <label class="ck-item"><input type="checkbox" data-vsel="Object Detection"><span class="ck-box"></span><span class="ck-lbl">Object Detection</span></label>
+      <label class="ck-item"><input type="checkbox" data-vsel="Intrusion"><span class="ck-box"></span><span class="ck-lbl">Intrusion</span></label>
+      <label class="ck-item"><input type="checkbox" data-vsel="Loitering"><span class="ck-box"></span><span class="ck-lbl">Loitering</span></label>
+      <label class="ck-item"><input type="checkbox" data-vsel="Line Crossing"><span class="ck-box"></span><span class="ck-lbl">Line Crossing</span></label>
+      <label class="ck-item"><input type="checkbox" data-vsel="Face Detection"><span class="ck-box"></span><span class="ck-lbl">Face Detection</span></label>
+      <label class="ck-item"><input type="checkbox" data-vsel="Crowd Detection"><span class="ck-box"></span><span class="ck-lbl">Crowd Detection</span></label>
+      <label class="ck-item"><input type="checkbox" data-vsel="Abandoned Object Detection"><span class="ck-box"></span><span class="ck-lbl">Abandoned Object</span></label>
+      <label class="ck-item"><input type="checkbox" data-vsel="Removed Object Detection"><span class="ck-box"></span><span class="ck-lbl">Removed Object</span></label>
+      <label class="ck-item"><input type="checkbox" data-vsel="Fall Detection"><span class="ck-box"></span><span class="ck-lbl">Fall Detection</span></label>
+    </div>
+    <button class="rst-btn" onclick="resetVaFeatureSelector()">↺ Reset VA Features</button>
     <div class="va-sec-lbl">VA Box (Add-on Appliance)</div>
     <div class="va-feat-grid">
       <div class="va-feat-card" data-vaf="dv1304a">
         <span class="vfc-badge box-b">BOX</span>
         <div class="vfc-icon">📦</div>
-        <div class="vfc-name">DV-1304A</div>
-        <div class="vfc-tier">EdgeAI add-on · 4 Streams</div>
+        <div class="vfc-name">DV-1304-A</div>
+        <div class="vfc-tier">EdgeAI · 4 Streams</div>
       </div>
       <div class="va-feat-card" data-vaf="dv1304">
         <span class="vfc-badge box-b">BOX</span>
@@ -659,7 +674,14 @@ let hiddenModels = new Set();
 let customCats   = {{}};
 function getVisibleCameras() {{ return CAMERAS.filter(c=>!hiddenModels.has(c.model)); }}
 function getCameraCategory(c) {{ return customCats[c.model] || c.category; }}
+function resetVaFeatureSelector(){{
+  vaSelectedFeatures.clear();
+  document.querySelectorAll('#scrVa [data-vsel]').forEach(cb=>cb.checked=false);
 
+  document.getElementById('vaIntro').classList.remove('gone');
+  document.getElementById('vaResults').classList.add('gone');
+  document.getElementById('vaResults').innerHTML = '';
+}}
 // ── THEME ──
 function setTheme(t){{
   document.documentElement.dataset.theme=t;
@@ -683,7 +705,7 @@ function goScreen(s){{
 function esc(s){{const d=document.createElement('div');d.textContent=s;return d.innerHTML;}}
 
 // ── CAMERA FILTER STATE ──
-let aCats=new Set(),aLens=new Set(),aFls=new Set(),aRes=new Set(),aAn=new Set(),aFeat=new Set();
+let aCats=new Set(),aLens=new Set(),aFls=new Set(),aRes=new Set(),aAn=new Set(),aAnf=new Set(),aFeat=new Set();
 let aSt=new Set(['출시완료']),aProto=new Set(),aOnvifP=new Set(),cmpList=[];
 
 function getMotoGroup(cam){{
@@ -709,6 +731,25 @@ document.querySelectorAll('[data-feat]').forEach(cb=>{{
 }});
 document.querySelectorAll('[data-rfeat]').forEach(cb=>{{
   cb.onchange=()=>{{if(cb.checked)rFeatF.add(cb.dataset.rfeat);else rFeatF.delete(cb.dataset.rfeat);renderRec();}};
+}});
+document.querySelectorAll('[data-anf]').forEach(cb=>{{
+  cb.onchange=()=>{{
+    if(cb.checked) aAnf.add(cb.dataset.anf);
+    else aAnf.delete(cb.dataset.anf);
+    render();
+  }};
+}});
+document.querySelectorAll('[data-vsel]').forEach(cb=>{{
+  cb.onchange = () => {{
+    if(cb.checked) vaSelectedFeatures.add(cb.dataset.vsel);
+    else vaSelectedFeatures.delete(cb.dataset.vsel);
+
+    // 기존 EdgeAI / VA Box 카드 선택 상태 해제
+    document.querySelectorAll('.va-feat-card.active').forEach(c=>c.classList.remove('active'));
+    vaActive = null;
+
+    renderVaFeatureSelector();
+  }};
 }});
 
 function togSet(set,val,el){{
@@ -772,6 +813,13 @@ function passes(cam){{
     const ok=(aAn.has('none')&&t==='none')||(aAn.has('edgeai')&&(t==='edgeai'||t==='edgeai_plus'))||(aAn.has('edgeai_plus')&&t==='edgeai_plus')||(aAn.has('lpr')&&cam.isLPR)||(aAn.has('active')&&cam.isActiveDeterrent);
     if(!ok) return false;
   }}
+  if(aAnf.size){{
+    const features = cam.analyticsFeatures || [];
+    const ok = [...aAnf].every(feature =>
+    features.includes(feature)
+    );
+    if(!ok) return false;
+  }}
   for(const f of aFeat){{
     if(f==='hasFIPS'){{if(!cam.hasFIPS||!cam.hasUL) return false;}}
     else if(f==='hasVandal'){{if(!cam.hasVandal&&!cam.hasOutdoor) return false;}}
@@ -811,10 +859,11 @@ function render(){{
 }}
 
 function resetAll(){{
-  aCats.clear();aLens.clear();aFls.clear();aRes.clear();aAn.clear();aFeat.clear();
+  aCats.clear();aLens.clear();aFls.clear();aRes.clear();aAn.clear();aAnf.clear();aFeat.clear();
   aProto.clear();aOnvifP.clear();aSt=new Set(['출시완료']);
   document.querySelectorAll('#scrCam .chip.on').forEach(el=>el.classList.remove('on'));
   document.querySelectorAll('[data-feat]').forEach(cb=>cb.checked=false);
+  document.querySelectorAll('[data-anf]').forEach(cb=>cb.checked=false);
   document.querySelectorAll('.st-pill').forEach(p=>{{p.className='st-pill'+(p.dataset.st==='출시완료'?' on':'');}});
   document.getElementById('sub-onvif').className='sub-pnl shut';
   document.getElementById('sub-fixed').className='sub-pnl shut';
@@ -1016,52 +1065,163 @@ function resetRec(){{
 const VA_CFG={{
   edgeai:{{icon:'🎯',name:'EdgeAI',desc:'Object Detection, Loitering, Line Crossing, Intrusion, Face Detection.',
     camFilter:c=>(c.analyticsTier==='edgeai'||c.analyticsTier==='edgeai_plus')&&c.status==='출시완료',
-    nvrFilter:r=>r.series!=='DR1'&&r.status==='출시완료',panelNvrTitle:'Compatible NVR',boxes:[],
-    notes:[{{ok:true,t:'VA results visible only in <b>ISS or IDIS Center</b>'}},{{ok:false,t:'EdgeAI + DV-1304A ❌ (Metadata duplication)'}},{{ok:false,t:'EdgeAI + DV-3200-B ❌ (Metadata duplication)'}}]}},
+    nvrFilter:r=>r.status==='출시완료' && !['DR1','IR-WS'].includes(r.series),panelNvrTitle:'Compatible NVR',boxes:[],
+    notes:[{{ok:true,t:'VA results visible only in <b>ISS or IDIS Center</b>'}},{{ok:false,t:'EdgeAI + DV-1304-A ❌ (Metadata duplication)'}},{{ok:false,t:'EdgeAI + DV-3200-B ❌ (Metadata duplication)'}}]}},
   edgeai_plus:{{icon:'✨',name:'EdgeAI Plus',desc:'All EdgeAI + Object Attributes, A-Cut, Crowd Detection (IDLA Pro).',
     camFilter:c=>c.analyticsTier==='edgeai_plus'&&c.status==='출시완료',
-    nvrFilter:r=>r.series!=='DR1'&&r.status==='출시완료',panelNvrTitle:'Compatible NVR',boxes:[],
-    notes:[{{ok:true,t:'VA results visible only in <b>ISS or IDIS Center</b>'}},{{ok:false,t:'EdgeAI Plus + DV-1304A ❌'}},{{ok:false,t:'EdgeAI Plus + DV-3200-B ❌'}}]}},
-  lpr:{{icon:'🚗',name:'LPR',desc:'License Plate Recognition. Black/White List, Attribute Events. Management only in ISS.',
-    camFilter:c=>c.isLPR===true&&c.status==='출시완료',
-    nvrFilter:r=>(r.series==='IR-WS'||r.series==='IR-SVR')&&r.status==='출시완료',
-    panelNvrTitle:'Compatible NVR (IR-310D / IR-1200)',boxes:[],
-    notes:[{{ok:true,t:'LPR management only in <b>ISS</b>'}},{{ok:true,t:'LPR cameras connect via ONVIF → requires IR-310D or IR-1200'}},{{ok:false,t:'DR series NVRs: not compatible'}}]}},
-  active:{{icon:'🚨',name:'Active Deterrence',desc:'Warm Light, Red/Blue Warning Light, audible alarm.',
-    camFilter:c=>c.isActiveDeterrent===true&&c.status==='출시완료',
-    nvrFilter:r=>(r.series==='IR-WS'||r.series==='IR-SVR')&&r.status==='출시완료',
-    panelNvrTitle:'Compatible NVR (IR-310D / IR-1200)',boxes:[],
-    notes:[{{ok:true,t:'Active Deterrence cameras connect via ONVIF → requires IR-310D or IR-1200'}},{{ok:false,t:'DR series: not compatible'}}]}},
-  dv1304a:{{icon:'📦',name:'DV-1304A',desc:'Adds EdgeAI to standard DirectIP cameras. 4 Streams. Must operate with NVR.',
+    nvrFilter:r=>r.status==='출시완료' && !['DR1','IR-WS'].includes(r.series),panelNvrTitle:'Compatible NVR',boxes:[],
+    notes:[{{ok:true,t:'VA results visible only in <b>ISS or IDIS Center</b>'}},{{ok:false,t:'EdgeAI Plus + DV-1304-A ❌'}},{{ok:false,t:'EdgeAI Plus + DV-3200-B ❌'}}]}},
+  dv1304a:{{icon:'📦',name:'DV-1304-A',desc:'Adds EdgeAI to standard DirectIP cameras. 4 Streams. Must operate with NVR.',
     camFilter:c=>c.isDirectIP&&c.analyticsTier==='none'&&c.status==='출시완료',
-    nvrFilter:r=>r.series.startsWith('DR')&&r.status==='출시완료',
+    nvrFilter:r=>r.status==='출시완료' && !['DR1','IR-WS','IR-SVR'].includes(r.series),
     panelNvrTitle:'Must Have NVR (DR series)',boxes:['dv1304a'],
-    notes:[{{ok:true,t:'Standard DirectIP + DV-1304A + NVR + ISS/IDIS Center ✅'}},{{ok:false,t:'EdgeAI/EdgeAI+ cameras ❌ (Metadata duplication)'}},{{ok:false,t:'DV-1304A + DV-3200-B ❌'}}]}},
-  dv1304:{{icon:'📊',name:'DV-1304',desc:'BI Analytics: People Count, Occupancy, HeatMap, Queue. 4 Streams. Must operate with NVR.',
+    notes:[{{ok:true,t:'Standard DirectIP + DV-1304-A + NVR + ISS/IDIS Center ✅'}},{{ok:false,t:'EdgeAI/EdgeAI+ cameras cannot be used simultaneously ❌ (Metadata duplication)'}},{{ok:false,t:'DV-3200-B cannot be used simultaneously ❌ (Metadata duplication)'}}]}},
+  dv1304:{{icon:'📊',name:'DV-1304',desc:'BI Analytics: People Counting, Occupancy, HeatMap, Queue Management. 4 Streams. Must operate with NVR.',
     camFilter:c=>c.isDirectIP&&c.status==='출시완료',
-    nvrFilter:r=>r.series.startsWith('DR')&&r.status==='출시완료',
+    nvrFilter:r=>r.status==='출시완료' && !['DR1','IR-WS','IR-SVR'].includes(r.series),
     panelNvrTitle:'Must Have NVR (DR series)',boxes:['dv1304'],
     notes:[{{ok:true,t:'DirectIP cameras + DV-1304 + NVR + ISS/IDIS Center ✅'}},{{ok:false,t:'DV-3200-B cannot be used simultaneously'}}]}},
-  dv3200b:{{icon:'🖥️',name:'DV-3200-B (Server VA)',desc:'Server-based IDLA for standard DirectIP cameras only.',
+  dv3200b:{{icon:'🖥️',name:'DV-3200-B (Server VA)',desc:'Server-based IDLA appliance for IDIS Solution Suite.',
     camFilter:c=>c.isDirectIP&&c.analyticsTier==='none'&&c.status==='출시완료',
-    nvrFilter:r=>r.series!=='DR1'&&r.status==='출시완료',
-    panelNvrTitle:'Compatible NVR',boxes:[],
-    notes:[{{ok:true,t:'Standard DirectIP cameras only'}},{{ok:false,t:'EdgeAI / EdgeAI+ cameras ❌'}},{{ok:false,t:'DV-1304A or DV-1304 cannot be used simultaneously'}}]}},
+    nvrFilter:r=>r.status==='출시완료' && !['DR1','DR2','DR6','DR8','IR-WS'].includes(r.series),
+    panelNvrTitle:'Compatible NVR',boxes:['dv3200b'],
+    notes:[{{ok:true,t:'Standard DirectIP cameras only'}},{{ok:false,t:'EdgeAI / EdgeAI+ cameras ❌'}},{{ok:false,t:'DirectIP NVR ❌'}}]}},
 }};
 const VA_BOX={{
-  dv1304a:{{badge:'EdgeAI Add-on Box',name:'DV-1304A',desc:'Adds EdgeAI analytics to standard DirectIP cameras.',
-    specs:[['Analytics','Obj Det, Loitering, Line Crossing, Intrusion'],['Capacity','Max 4 Streams'],['Required','DirectIP NVR + ISS or IDIS Center']],
-    compat:[{{ok:true,t:'Standard DirectIP + DV-1304A + NVR + ISS/IDIS Center'}},{{ok:false,t:'EdgeAI/EdgeAI+ cameras (Metadata duplication)'}}]}},
+  dv1304a:{{badge:'EdgeAI Box',name:'DV-1304-A',desc:'Adds EdgeAI analytics to standard DirectIP cameras.',
+    specs:[['Analytics','Object Detection, Loitering, Line Crossing, Intrusion, Face Detection'],['Capacity','Max 4 Streams'],['Required','DirectIP NVR + ISS or IDIS Center']],
+    compat:[{{ok:true,t:'Standard DirectIP + DV-1304-A + NVR + ISS/IDIS Center'}},{{ok:false,t:'EdgeAI/EdgeAI+ cameras (Metadata duplication)'}}]}},
   dv1304:{{badge:'BI Analytics Box',name:'DV-1304',desc:'Business Intelligence analytics.',
-    specs:[['Analytics','People Count, Occupancy, Queue, HeatMap'],['Capacity','Max 4 Streams'],['Required','DirectIP NVR + ISS or IDIS Center']],
-    compat:[{{ok:true,t:'DirectIP cameras (incl. EdgeAI) + NVR + ISS/IDIS Center'}},{{ok:false,t:'Cannot coexist with DV-3200-B'}}]}},
+    specs:[['Analytics','People Counting, Occupancy, Queue Management, HeatMap'],['Capacity','Max 4 Streams'],['Required','DirectIP NVR + ISS or IDIS Center']],
+    compat:[{{ok:true,t:'DirectIP cameras (incl. EdgeAI/EdgeAI Plus) + NVR + ISS/IDIS Center'}},{{ok:false,t:'Cannot coexist with DV-3200-B'}}]}},
+  dv3200b:{{badge:'Server VA',name:'DV-3200-B',desc:'Server-based IDLA appliance for IDIS Solution Suite.',
+    specs:[['Included Analytics','Intrusion, Loitering, Line Crossing, PTZ Auto Tracking'],['Optional Analytics','Face Detection, Abandoned Object Detection, Fall Detection, <br>Violence Detection, Fire Detection, Explosion Detection, <br>Crowd Detection,  Privacy Masking, Rockfall Detection, <br>Fisheye Camera Object Detection, Fisheye PI Tracking '],['Requirement','Add-on Service installation is required when using an NVR or Edge AI IP camera, <br>or when enabling optional Analytics features. Please contact your sales representative.'],['Client','ISS Client for VA result display/playback']],
+    compat:[{{ok:true,t:'Standard IP cameras + ISS + ISS Client'}},{{ok:false,t:'EdgeAI/EdgeAI Plus cameras require Add-on Service'}},{{ok:false,t:'NVR/DVR connection requires Add-on Service'}}]}},
 }};
-const SERIES_LBL={{DR1:'DR-1500',DR2:'DR-2500',DR6:'DR-6500',DR8:'DR-8500','IR-WS':'IR-310','IR-SVR':'IR-1200'}};
+const SERIES_LBL={{DR1:'DR-1500',DR2:'DR-2500',DR6:'DR-6500',DR8:'DR-8500',IR:'IR-SVR'}};
+
 let vaActive=null;
+let vaSelectedFeatures = new Set();
+
+function normVaFeature(s){{
+  return String(s || '')
+    .toLowerCase()
+    .replace(/-/g, ' ')
+    .replace(/_/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}}
+
+function camHasVaFeature(cam, feature){{
+  const features = (cam.analyticsFeatures || []).map(normVaFeature);
+  return features.includes(normVaFeature(feature));
+}}
+
+function renderVaFeatureSelector(){{
+  const selected = [...vaSelectedFeatures];
+
+  if(!selected.length){{
+    document.getElementById('vaIntro').classList.remove('gone');
+    document.getElementById('vaResults').classList.add('gone');
+    document.getElementById('vaResults').innerHTML = '';
+    return;
+  }}
+
+  const cams = CAMERAS.filter(c =>
+    c.status === '출시완료' &&
+    selected.every(feature => camHasVaFeature(c, feature))
+  );
+  const nvrs = RECORDERS.filter(VA_CFG.edgeai.nvrFilter);
+
+  const camRows = cams.length ? cams.map(c => {{
+    const features = c.analyticsFeatures || [];
+    const featureTags = features.map(f =>
+      '<span class="va-cam-tag t-ai">'+esc(f)+'</span>'
+    ).join('');
+
+    return '<div class="va-cam-row">' +
+      '<div class="va-cam-model">'+esc(c.model)+'</div>' +
+      '<div class="va-cam-title">'+esc(c.title || '-')+'</div>' +
+      '<div class="va-cam-tags">' +
+        '<span class="va-cam-tag t-cat">'+esc(getCameraCategory(c) || '-')+'</span>' +
+        '<span class="va-cam-tag t-mp">'+esc(String(c.mp || '-'))+'MP</span>' +
+        featureTags +
+      '</div>' +
+    '</div>';
+  }}).join('') : '<div style="padding:12px;font-size:12px;color:var(--text3)">No cameras match the selected VA features.</div>';
+  
+  const nvrRows = nvrs.length ? nvrs.map(r => {{
+    const tags = [];
+    if(r.is4K) tags.push('<span class="va-nvr-tag t-4k">4K</span>');
+    if(r.hasRAID) tags.push('<span class="va-nvr-tag t-raid">RAID</span>');
+    if(r.hasONVIF) tags.push('<span class="va-nvr-tag t-onvif">ONVIF</span>');
+
+    return '<div class="va-nvr-row">' +
+      '<div class="va-nvr-series">'+esc(r.series || '-')+'</div>' +
+      '<div class="va-nvr-model">'+esc(r.model)+'</div>' +
+      '<div class="va-nvr-spec">'+
+        esc((r.channels || '-') + 'ch') + ' · ' +
+        esc(r.recBandwidth || '-') + ' · ' +
+        esc(r.recRes || '-') +
+      '</div>' +
+      '<div class="va-nvr-tags">'+tags.join('')+'</div>' +
+    '</div>';
+  }}).join('') : '<div style="padding:12px;font-size:12px;color:var(--text3)">No compatible NVR found.</div>';
+  
+
+
+
+  document.getElementById('vaIntro').classList.add('gone');
+
+  document.getElementById('vaResults').innerHTML =
+  '<div class="va-feat-hdr">' +
+    '<div class="va-feat-hdr-top">' +
+      '<span class="va-feat-hdr-icon">🔍</span>' +
+      '<span class="va-feat-hdr-name">Camera Built-in VA Features</span>' +
+    '</div>' +
+    '<div class="va-feat-hdr-desc">Selected: '+esc(selected.join(', '))+'</div>' +
+  '</div>' +
+
+  '<div class="va-global-note">ℹ️ <b>Important:</b> All VA results visible only in <b>ISS or IDIS Center</b>. '+
+  'NVR Local Display does NOT show VA overlays.</div>'+
+
+  '<div class="va-col-grid two">' +
+    '<div class="va-panel">' +
+      '<div class="va-panel-hdr">' +
+        '<span class="va-panel-icon">📷</span>' +
+        '<span class="va-panel-title">Matched Cameras</span>' +
+        '<span class="va-panel-cnt">'+cams.length+'</span>' +
+      '</div>' +
+      '<div class="va-panel-body">'+camRows+'</div>' +
+    '</div>' +
+
+    '<div class="va-panel">' +
+      '<div class="va-panel-hdr">' +
+        '<span class="va-panel-icon">🖥️</span>' +
+        '<span class="va-panel-title">Compatible NVR</span>' +
+        '<span class="va-panel-cnt">'+nvrs.length+'</span>' +
+      '</div>' +
+      '<div class="va-panel-body">'+nvrRows+'</div>' +
+    '</div>' +
+  '</div>' +
+
+  '<div class="va-incompat-note">' +
+    '<div class="va-incompat-row">⚠️ Selected camera built-in VA features require <b>ISS or IDIS Center</b> for VA result display/search.</div>' +
+    '<div class="va-incompat-row">⚠️ NVR local display can record/play video, but does not display VA overlays.</div>' +
+  '</div>';
+
+  document.getElementById('vaResults').classList.remove('gone');
+}}
+
 function vaRender(feat){{
   const cfg=VA_CFG[feat];if(!cfg)return;
   const cams=CAMERAS.filter(cfg.camFilter),nvrs=RECORDERS.filter(cfg.nvrFilter);
   const hasBox=cfg.boxes&&cfg.boxes.length>0;
+
+  const globalNote = feat === 'dv3200b'
+  ? 'ℹ️ <b>Important:</b> Add-on Service is required for DirectIP NVR connection.'
+  : 'ℹ️ <b>Important:</b> All VA results visible only in <b>ISS or IDIS Center</b>. NVR Local Display does NOT show VA overlays.';
+
   function aiTag(c){{
     if(c.analyticsTier==='edgeai_plus')return'<span class="va-cam-tag t-aip">AI+</span>';
     if(c.analyticsTier==='edgeai')return'<span class="va-cam-tag t-ai">AI</span>';
@@ -1069,6 +1229,7 @@ function vaRender(feat){{
     if(c.isActiveDeterrent)return'<span class="va-cam-tag t-act">ActiveDet</span>';
     return'';
   }}
+
   const camRows=cams.length?cams.map(c=>'<div class="va-cam-row"><div class="va-cam-model">'+esc(c.model)+'</div>'+
     '<div class="va-cam-title">'+esc(c.title)+'</div>'+
     '<div class="va-cam-tags"><span class="va-cam-tag t-cat">'+c.category+'</span>'+
@@ -1098,8 +1259,7 @@ function vaRender(feat){{
     '<span class="va-feat-hdr-icon">'+cfg.icon+'</span>'+
     '<span class="va-feat-hdr-name">'+cfg.name+'</span></div>'+
     '<div class="va-feat-hdr-desc">'+cfg.desc+'</div></div>'+
-    '<div class="va-global-note">ℹ️ <b>Important:</b> All VA results visible only in <b>ISS or IDIS Center</b>. '+
-    'NVR Local Display does NOT show VA overlays.</div>'+
+    '<div class="va-global-note">'+globalNote+'</div>'+
     '<div class="va-col-grid '+grid+'">'+
     '<div class="va-panel"><div class="va-panel-hdr"><span class="va-panel-icon">📷</span>'+
     '<span class="va-panel-title">Compatible Cameras</span><span class="va-panel-cnt">'+cams.length+'</span></div>'+
